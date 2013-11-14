@@ -50,7 +50,7 @@ insert() {
   fi
 
   if [ -e "${entry_path}" ]; then
-    echo "This entry already exsists it will be overwritten."
+    echo "This entry already exists it will be overwritten."
   fi
 
   IFS= read -p "Password for '${entry_name}': " -r -s password
