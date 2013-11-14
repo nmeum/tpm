@@ -1,0 +1,75 @@
+#!/bin/bash
+
+##
+# Variables
+##
+
+GPG_OPTS="--quiet --yes --batch --no-tty"
+STORE_DIR="${TPM_STORE_DIR:-${HOME}/.password-store}"
+
+if [ -z "${TPM_STORE_KEY}" ]; then
+  GPG_OPTS="${GPG_OPTS} --default-recipient-self"
+else
+  GPG_OPTS="${GPG_OPTS} --recipient '${TPM_STORE_KEY}'"
+fi
+
+##
+# Helper
+##
+
+abort() {
+  echo "${1}" 1>&2
+  exit 1
+}
+
+##
+# Commands
+##
+
+show() {
+  entry_name="${1}"
+  entry_path="${STORE_DIR}/${entry_name}.gpg"
+
+  if [ -z "${entry_name}" ]; then
+    abort "USAGE: ${APP_NAME} show [entry_name]"
+  fi
+
+  if [ ! -f "${entry_path}" ]; then
+    abort "The requested entry doesn't exist."
+  fi
+
+  gpg2 ${GPG_OPTS} --decrypt "${entry_path}"
+}
+
+insert() {
+  entry_name="${1}"
+  entry_path="${STORE_DIR}/${entry_name}.gpg"
+
+  if [ -z "${entry_name}" ]; then
+    abort "USAGE: ${APP_NAME} insert [entry-name]"
+  fi
+
+  if [ -e "${entry_path}" ]; then
+    echo "This entry already exsists it will be overwritten."
+  fi
+
+  IFS= read -p "Password for '${entry_name}': " -r -s password
+  echo
+
+  if [ -z "${password}" ]; then
+    abort "You didn't specify a password."
+  fi
+
+  mkdir --parents "$(dirname "${entry_path}")"
+  gpg2 ${GPG_OPTS} --encrypt --output "${entry_path}" <<< "${password}"
+}
+
+##
+# Parse input
+##
+
+case "${1}" in
+  "show")   show   "${2}" ;;
+  "insert") insert "${2}" ;;
+  *) abort "USAGE: $(basename "$0") OPERATION ENTRY" ;;
+esac

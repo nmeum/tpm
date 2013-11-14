@@ -1,0 +1,23 @@
+#compdef tpm
+
+_tpm() {
+  local cmd=${words[2]}
+  if [ "${cmd}" = "insert" ]; then
+    _tpm_complete_entries -true
+  elif [ "${cmd}" = "show" ]; then
+    _tpm_complete_entries -iname '*.gpg' -type f
+  else
+    local -a subcommands
+    subcommands=(
+      "show:Show a password for a specified entry"
+      "insert:Insert a new password entry"
+    )
+
+    _describe -t commands "tpm" subcommands
+  fi
+}
+
+_tpm_complete_entries() {
+  local dir="${HOME}/.password-store"
+  _values -S / -C 'entries' $(find "${dir}/" $@ -print | sed -e "s^${dir}.^^" -e 's^\.gpg^^' | sort)
+}

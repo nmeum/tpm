@@ -1,0 +1,55 @@
+=head1 NAME
+
+tpm - Tiny password manager
+
+=head1 SYNOPSIS
+
+B<tpm> [ I<COMMAND> ] [ I<ENTRY> ]
+
+=head1 DESCRIPTION
+
+tpm is a tiny shell script which is heavily inspired by pass(1) and uses
+gpg2(1) to securely store your passwords. Invoking tpm consists of specifying
+a command, either insert or show, and supplying one entry as a target.
+
+=head1 COMMANDS
+
+=over 4
+
+=item insert
+
+Create a new entry and read the corresponding password from STDIN.
+
+=item show
+
+Decrypt and print the password of a specified entry to STDOUT.
+
+=back
+
+=head1 FILES
+
+=over 4
+
+=item ~/.password-store
+
+The default storage directory.
+
+=back
+
+=head1 ENVIRONMENT VARIABLES
+
+=over 4
+
+=item TPM_STORE_DIR
+
+The storage directory (default: ~/.password-store).
+
+=item TPM_STORE_KEY
+
+GPG key to encrypt files with (default: self).
+
+=back
+
+=head1 SEE ALSO
+
+gpg2(1), pass(1)
