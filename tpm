@@ -33,7 +33,7 @@ show() {
   entry_path="${STORE_DIR}/${entry_name}.gpg"
 
   if [ -z "${entry_name}" ]; then
-    abort "USAGE: ${APP_NAME} show [entry_name]"
+    abort "USAGE: tpm show [entry_name]"
   fi
 
   if [ ! -f "${entry_path}" ]; then
@@ -48,7 +48,7 @@ insert() {
   entry_path="${STORE_DIR}/${entry_name}.gpg"
 
   if [ -z "${entry_name}" ]; then
-    abort "USAGE: ${APP_NAME} insert [entry-name]"
+    abort "USAGE: tpm insert [entry-name]"
   fi
 
   if [ -e "${entry_path}" ]; then
@@ -73,5 +73,5 @@ insert() {
 case "${1}" in
   "show")   show   "${2}" ;;
   "insert") insert "${2}" ;;
-  *) abort "USAGE: $(basename "$0") OPERATION ENTRY" ;;
+  *) abort "USAGE: tpm OPERATION ENTRY" ;;
 esac
