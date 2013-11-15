@@ -51,12 +51,12 @@ insert() {
     abort "USAGE: tpm insert [entry-name]"
   fi
 
-  if [ -e "${entry_path}" ]; then
+  if [ -e "${entry_path}" ] && [ -t 0 ]; then
     echo "This entry already exists it will be overwritten."
   fi
 
   IFS= read -p "Password for '${entry_name}': " -r -s password
-  echo
+  [ -t 0 ] && echo
 
   if [ -z "${password}" ]; then
     abort "You didn't specify a password."
