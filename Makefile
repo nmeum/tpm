@@ -1,4 +1,4 @@
-VERSION  = 0.0
+VERSION  = 1.0
 MANPAGES = tpm.1
 
 PREFIX    ?= /usr/local
