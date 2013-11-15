@@ -1,5 +1,7 @@
 #!/bin/bash
 
+umask 077
+
 ##
 # Variables
 ##
