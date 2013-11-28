@@ -9,7 +9,7 @@ umask 077
 GPG_OPTS="--quiet --yes --batch --no-tty"
 STORE_DIR="${TPM_STORE_DIR:-${HOME}/.password-store}"
 
-if [ -z "${TPM_STORE_KEY}" ]; then
+if [[ -z "${TPM_STORE_KEY}" ]]; then
   GPG_OPTS="${GPG_OPTS} --default-recipient-self"
 else
   GPG_OPTS="${GPG_OPTS} --recipient '${TPM_STORE_KEY}'"
@@ -32,11 +32,11 @@ show() {
   entry_name="${1}"
   entry_path="${STORE_DIR}/${entry_name}.gpg"
 
-  if [ -z "${entry_name}" ]; then
+  if [[ -z "${entry_name}" ]]; then
     abort "USAGE: tpm show [ ENTRY ]"
   fi
 
-  if [ ! -f "${entry_path}" ]; then
+  if [[ ! -f "${entry_path}" ]]; then
     abort "The requested entry doesn't exist."
   fi
 
@@ -47,18 +47,18 @@ insert() {
   entry_name="${1}"
   entry_path="${STORE_DIR}/${entry_name}.gpg"
 
-  if [ -z "${entry_name}" ]; then
+  if [[ -z "${entry_name}" ]]; then
     abort "USAGE: tpm insert [ ENTRY ]"
   fi
 
-  if [ -e "${entry_path}" ] && [ -t 0 ]; then
+  if [[ -e "${entry_path}" && -t 0 ]]; then
     echo "This entry already exists it will be overwritten."
   fi
 
   IFS= read -p "Password for '${entry_name}': " -r -s password
-  [ -t 0 ] && echo
+  [[ -t 0 ]] && echo
 
-  if [ -z "${password}" ]; then
+  if [[ -z "${password}" ]]; then
     abort "You didn't specify a password."
   fi
 
