@@ -19,5 +19,5 @@ _tpm() {
 
 _tpm_complete_entries() {
   local dir="${TPM_STORE_DIR:-${HOME}/.password-store}"
-  _values -S / -C 'entries' $(find "${dir}/" $@ -print | sed -e "s^${dir}.^^" -e 's^\.gpg^^' | sort)
+  _values -C 'entries' $(find "${dir}/" $@ -print | sed -e "s^${dir}.^^" -e 's^\.gpg^^' | sort)
 }
