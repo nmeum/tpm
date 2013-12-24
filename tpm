@@ -6,7 +6,7 @@ umask 077
 # Variables
 ##
 
-GPG_OPTS="--quiet --yes --batch --no-tty"
+GPG_OPTS="--quiet --yes --batch"
 STORE_DIR="${TPM_STORE_DIR:-${HOME}/.password-store}"
 
 if [[ -z "${TPM_STORE_KEY}" ]]; then
