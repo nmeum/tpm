@@ -62,7 +62,7 @@ insert() {
     abort "You didn't specify a password."
   fi
 
-  mkdir --parents "$(dirname "${entry_path}")"
+  mkdir -p "$(dirname "${entry_path}")"
   gpg2 ${GPG_OPTS} --encrypt --output "${entry_path}" <<< "${password}"
 }
 
