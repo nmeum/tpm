@@ -1,5 +1,5 @@
-VERSION  = 1.1
-MANPAGES = tpm.1
+VERSION    = 1.1
+MANPAGES   = tpm.1
 
 PREFIX    ?= /usr/local
 MANPREFIX ?= $(PREFIX)/share/man
