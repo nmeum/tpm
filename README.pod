@@ -62,4 +62,4 @@ Copy your 'system/root' password to the clipboard using xclip(1)
 
 =head1 SEE ALSO
 
-gpg2(1), pass(1)
+gpg2(1), pass(1), pwgen(1), xclip(1)
