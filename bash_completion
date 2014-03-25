@@ -13,8 +13,11 @@ _tpm() {
 
 _tpm_complete_entries() {
 	local dir="${TPM_STORE_DIR:-${HOME}/.password-store}"
-	local files="$(find "${dir}/" $@ -print | sed -e "s^${dir}.^^" -e 's^\.gpg^^' | sort)"
-	COMPREPLY=($(compgen -W "${files}" -- ${cur}))
+
+	if [[ -d "${dir}" ]]; then
+		local files="$(find "${dir}/" $@ -print | sed -e "s^${dir}.^^" -e 's^\.gpg^^' | sort)"
+		COMPREPLY=($(compgen -W "${files}" -- ${cur}))
+	fi
 }
 
 complete -F _tpm tpm
