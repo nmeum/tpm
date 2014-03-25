@@ -42,7 +42,7 @@ The default storage directory.
 
 =head1 EXAMPLE
 
-Generate a random password using pwgen(1)
+Create a new entry with a random password using pwgen(1)
 
 	$ pwgen -1 | tpm insert system/new-user
 
