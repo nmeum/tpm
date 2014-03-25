@@ -50,6 +50,24 @@ The default storage directory.
 
 =back
 
+=head1 EXAMPLE
+
+Generate a random password using pwgen(1)
+
+	$ pwgen -1 | tpm insert system/new-user
+
+Create a new entry called 'system/root'
+
+	$ tpm insert system/root
+
+Print your 'system/root' password to stdout
+
+	$ tpm show system/root
+
+Copy your 'system/root' password to the clipboard using xclip(1)
+
+	$ tpm show system/root | tr -d '\n' | xclip
+
 =head1 SEE ALSO
 
 gpg2(1), pass(1)
