@@ -11,12 +11,10 @@ B<tpm> [ I<COMMAND> ] [ I<ENTRY> ]
 tpm is a tiny shell script which is heavily inspired by pass(1) and uses
 gpg2(1) to securely store your passwords. Invoking tpm consists of
 specifying a command, either I<insert> or I<show>, and supplying one
-entry as a target.
-
-If I<insert> is specified as a command tpm will create a new entry and
-read the corresponding password from STDIN. If you specify I<show> as a
-command tpm will print the password of the corresponding entry to
-STDOUT.
+entry as a target. If I<insert> is specified as a command tpm will
+create a new entry and read the corresponding password from STDIN. If
+you specify I<show> as a command tpm will print the password of the
+corresponding entry to STDOUT.
 
 =head1 ENVIRONMENT
 
