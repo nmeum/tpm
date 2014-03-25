@@ -2,9 +2,9 @@
 
 _tpm() {
   local cmd=${words[2]}
-  if [ "${cmd}" = "insert" ]; then
+  if [[ "${cmd}" = "insert" ]]; then
     _tpm_complete_entries -true
-  elif [ "${cmd}" = "show" ]; then
+  elif [[ "${cmd}" = "show" ]]; then
     _tpm_complete_entries -iname '*.gpg' -type f
   else
     local -a subcommands
