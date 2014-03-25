@@ -26,17 +26,7 @@ Decrypt and print the password of a specified entry to STDOUT.
 
 =back
 
-=head1 FILES
-
-=over 4
-
-=item ~/.password-store
-
-The default storage directory.
-
-=back
-
-=head1 ENVIRONMENT VARIABLES
+=head1 ENVIRONMENT
 
 =over 4
 
@@ -47,6 +37,16 @@ The storage directory (default: ~/.password-store).
 =item TPM_STORE_KEY
 
 GPG key to encrypt files with (default: self).
+
+=back
+
+=head1 FILES
+
+=over 4
+
+=item ~/.password-store
+
+The default storage directory.
 
 =back
 
