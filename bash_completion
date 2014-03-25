@@ -1,0 +1,20 @@
+_tpm() {
+	local cur="${COMP_WORDS[COMP_CWORD]}"
+	local cmd="${COMP_WORDS[1]}"
+
+	if [[ "${cmd}" = "insert" ]]; then
+		_tpm_complete_entries -true
+	elif [[ "${cmd}" = "show" ]]; then
+		_tpm_complete_entries -iname '*.gpg' -type f
+	else
+		COMPREPLY=($(compgen -W "insert show" -- ${cur}))
+	fi
+}
+
+_tpm_complete_entries() {
+	local dir="${TPM_STORE_DIR:-${HOME}/.password-store}"
+	local files="$(find "${dir}/" $@ -print | sed -e "s^${dir}.^^" -e 's^\.gpg^^' | sort)"
+	COMPREPLY=($(compgen -W "${files}" -- ${cur}))
+}
+
+complete -F _tpm tpm
