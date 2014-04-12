@@ -1,6 +1,6 @@
 =head1 NAME
 
-tpm - Tiny password manager
+tpm - tiny password manager
 
 =head1 SYNOPSIS
 
