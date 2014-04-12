@@ -40,7 +40,7 @@ The default storage directory.
 
 =back
 
-=head1 EXAMPLE
+=head1 EXAMPLES
 
 Create a new entry with a random password using pwgen(1)
 
