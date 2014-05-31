@@ -3,6 +3,7 @@ VERSION   = 1.2
 PREFIX    ?= /usr/local
 MANPREFIX ?= $(PREFIX)/share/man
 
+all: tpm.1
 tpm.1: README.pod
 	pod2man --section=1 --center="tpm Manual" --name="tpm" \
 		--release="tpm $(VERSION)" $< $@
@@ -18,4 +19,4 @@ uninstall:
 clean:
 	$(RM) $(MANPAGES)
 
-.PHONY: install uninstall clean
+.PHONY: all install uninstall clean
