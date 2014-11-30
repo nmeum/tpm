@@ -59,7 +59,7 @@ insert() {
     echo "This entry already exists it will be overwritten."
   fi
 
-  IFS="" read -p "Password for '${entry_name}': " -r -s password
+  IFS= read -p "Password for '${entry_name}': " -r -s password
   [[ -t 0 ]] && echo
 
   if [[ -z "${password}" ]]; then
