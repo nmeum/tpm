@@ -7,16 +7,16 @@ umask 077
 ##
 
 GPG_OPTS="--quiet --yes --batch"
-STORE_DIR="${TPM_STORE_DIR:-${HOME}/.password-store}"
+STORE_DIR="${PASSWORD_STORE_DIR:-${HOME}/.password-store}"
 
 if [[ -r "${STORE_DIR}/.gpg-id" ]]; then
-  read -r TPM_STORE_KEY < "${STORE_DIR}/.gpg-id"
+  read -r PASSWORD_STORE_KEY < "${STORE_DIR}/.gpg-id"
 fi
 
-if [[ -z "${TPM_STORE_KEY}" ]]; then
+if [[ -z "${PASSWORD_STORE_KEY}" ]]; then
   GPG_OPTS="${GPG_OPTS} --default-recipient-self"
 else
-  GPG_OPTS="${GPG_OPTS} --recipient '${TPM_STORE_KEY}'"
+  GPG_OPTS="${GPG_OPTS} --recipient '${PASSWORD_STORE_KEY}'"
 fi
 
 ##
