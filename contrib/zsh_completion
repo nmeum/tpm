@@ -16,19 +16,21 @@
 
 _tpm() {
   local cmd=${words[2]}
-  if [[ "${cmd}" = "insert" ]]; then
-    _tpm_complete_entries
-  elif [[ "${cmd}" = "show" ]]; then
-    _tpm_complete_entries -type f
-  else
-    local -a subcommands
-    subcommands=(
-    "show:Show a password for a specified entry"
-    "insert:Insert a new password entry"
-    )
 
-    _describe -t commands "tpm" subcommands
-  fi
+  case "${cmd}"
+    "insert")
+      _tpm_complete_entries
+      ;;
+    "show")
+      _tpm_complete_entries -type f
+    *)
+      local subcommands=(
+        "show:Show a password for a specified entry"
+        "insert:Insert a new password entry"
+      )
+
+      _describe -t commands "tpm" subcommands
+  esac
 }
 
 _tpm_complete_entries() {
