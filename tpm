@@ -74,7 +74,7 @@ insert() {
   fi
 
   IFS= read -p "Password for '${entry_name}': " -r -s password
-  [[ -t 0 ]] && echo
+  [[ -t 0 ]] && printf "\n"
 
   if [[ -z "${password}" ]]; then
     abort "You didn't specify a password."
