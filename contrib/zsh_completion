@@ -23,8 +23,8 @@ _tpm() {
   else
     local -a subcommands
     subcommands=(
-      "show:Show a password for a specified entry"
-      "insert:Insert a new password entry"
+    "show:Show a password for a specified entry"
+    "insert:Insert a new password entry"
     )
 
     _describe -t commands "tpm" subcommands
@@ -35,6 +35,9 @@ _tpm_complete_entries() {
   local dir="${TPM_STORE_DIR:-${HOME}/.password-store}"
 
   if [[ -d "${dir}" ]]; then
-	_values -C 'entries' $(find -L "${dir}/" -name '.git' -prune -o $@ -print | sed -e "s|${dir}.||" -e "s|\.gpg||" | sort)
+    _values -C 'entries' \
+      $(find -L "${dir}/" -name '.git' -prune -o $@ -print | sed -e "s|${dir}.||" -e "s|\.gpg||" | sort)
   fi
 }
+
+# vim: et:sw=2:sts=2
