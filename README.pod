@@ -4,17 +4,20 @@ tpm - tiny password manager
 
 =head1 SYNOPSIS
 
-B<tpm> [ I<COMMAND> ] [ I<ENTRY> ]
+B<tpm> I<COMMAND> I<ENTRY>
 
 =head1 DESCRIPTION
 
-tpm is a tiny shell script which is heavily inspired and largely compatible by
-pass(1) and uses gpg2(1) to securely store your passwords. Invoking tpm
-consists of specifying a command, either I<insert> or I<show>, and supplying
-one entry as a target. If I<insert> is specified as a command tpm will create a
-new entry and read the corresponding password from STDIN. If you specify
-I<show> as a command tpm will print the password of the corresponding entry to
-STDOUT.
+tpm is a tiny shell script which is heavily inspired and largely
+compatible by pass(1). Just like pass it uses gpg2(1) to securely store
+your passwords, the major difference between pass and tpm is that the
+latter is a lot more minimal.
+
+Invoking tpm consists of specifying a command either I<insert> or
+I<show> and supplying one entry as a target. If I<insert> is specified
+as a command tpm will create a new entry and prompt for the
+corresponding password. If you specify I<show> as a command tpm will
+display the password for the given entry.
 
 =head1 ENVIRONMENT
 
@@ -40,25 +43,25 @@ The storage directory.
 
 =item $PASSWORD_STORE_DIR/.gpg-id
 
-Provided for compatiblity with pass(1). Overwrites $TPM_STORE_KEY.
+Provided for compatibility with pass(1). Overwrites $TPM_STORE_KEY.
 
 =back
 
 =head1 EXAMPLES
 
-Create a new entry with a random password using pwgen(1)
+Create a new entry with a random password using pwgen(1):
 
 	$ pwgen -1 | tpm insert system/new-user
 
-Create a new entry called 'system/root'
+Create a new entry called 'system/root':
 
 	$ tpm insert system/root
 
-Print your 'system/root' password to stdout
+Display your 'system/root' password:
 
 	$ tpm show system/root
 
-Copy your 'system/root' password to the clipboard using xclip(1)
+Copy your 'system/root' password to the clipboard using xclip(1):
 
 	$ tpm show system/root | tr -d '\n' | xclip
 
