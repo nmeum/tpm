@@ -23,6 +23,7 @@ _tpm() {
       ;;
     "show")
       _tpm_complete_entries -type f
+      ;;
     *)
       local subcommands=(
         "show:Show a password for a specified entry"
@@ -30,6 +31,7 @@ _tpm() {
       )
 
       _describe -t commands "tpm" subcommands
+      ;;
   esac
 }
 
