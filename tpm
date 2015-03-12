@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # Copyright (C) 2013-2015 Sören Tempel
 #
 # This program is free software: you can redistribute it and/or modify
@@ -23,11 +23,11 @@ umask 077
 GPG_OPTS="--quiet --yes --batch"
 STORE_DIR="${PASSWORD_STORE_DIR:-${HOME}/.password-store}"
 
-if [[ -r "${STORE_DIR}/.gpg-id" ]]; then
+if [ -r "${STORE_DIR}/.gpg-id" ]; then
   read -r PASSWORD_STORE_KEY < "${STORE_DIR}/.gpg-id"
 fi
 
-if [[ -z "${PASSWORD_STORE_KEY}" ]]; then
+if [ -z "${PASSWORD_STORE_KEY}" ]; then
   GPG_OPTS="${GPG_OPTS} --default-recipient-self"
 else
   GPG_OPTS="${GPG_OPTS} --recipient '${PASSWORD_STORE_KEY}'"
@@ -42,6 +42,13 @@ abort() {
   exit 1
 }
 
+readpw() {
+  printf "${1}"
+  stty -echo
+  IFS= read -r "${2}"
+  stty echo
+}
+
 ##
 # Commands
 ##
@@ -50,11 +57,11 @@ show() {
   entry_name="${1}"
   entry_path="${STORE_DIR}/${entry_name}.gpg"
 
-  if [[ -z "${entry_name}" ]]; then
+  if [ -z "${entry_name}" ]; then
     abort "USAGE: tpm show [ENTRY]"
   fi
 
-  if [[ ! -f "${entry_path}" ]]; then
+  if [ ! -f "${entry_path}" ]; then
     abort "The requested entry doesn't exist."
   fi
 
@@ -65,23 +72,23 @@ insert() {
   entry_name="${1}"
   entry_path="${STORE_DIR}/${entry_name}.gpg"
 
-  if [[ -z "${entry_name}" ]]; then
+  if [ -z "${entry_name}" ]; then
     abort "USAGE: tpm insert [ENTRY]"
   fi
 
-  if [[ -e "${entry_path}" && -t 0 ]]; then
+  if [ -e "${entry_path}" ] && [ -t 0 ]; then
     echo "This entry already exists it will be overwritten."
   fi
 
-  IFS= read -p "Password for '${entry_name}': " -r -s password
-  [[ -t 0 ]] && printf "\n"
+  readpw "Password for '${entry_name}': " password
+  [ -t 0 ] && printf "\n"
 
-  if [[ -z "${password}" ]]; then
+  if [ -z "${password}" ]; then
     abort "You didn't specify a password."
   fi
 
   mkdir -p "$(dirname "${entry_path}")"
-  gpg2 ${GPG_OPTS} --encrypt --output "${entry_path}" <<< "${password}"
+  echo "${password}" | gpg2 ${GPG_OPTS} --encrypt --output "${entry_path}"
 }
 
 ##
