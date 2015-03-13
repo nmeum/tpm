@@ -9,8 +9,8 @@ tpm.1: README.pod
 		--release="tpm $(VERSION)" $< $@
 
 install: tpm.1
-	install -D -m755 tpm "$(DESTDIR)$(PREFIX)/bin/tpm"
-	install -D -m644 tpm.1 "$(DESTDIR)$(MANPREFIX)/man1/tpm.1"
+	install -Dm755 tpm "$(DESTDIR)$(PREFIX)/bin/tpm"
+	install -Dm644 tpm.1 "$(DESTDIR)$(MANPREFIX)/man1/tpm.1"
 
 uninstall:
 	$(RM) "$(DESTDIR)$(PREFIX)/bin/tpm" \
