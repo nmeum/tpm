@@ -43,7 +43,7 @@ The default storage directory.
 
 =item I<~/.password-store/.gpg-id>
 
-Provided for compatibility with pass(1). Overwrites $TPM_STORE_KEY.
+Provided for compatibility with pass(1). Overwrites B<PASSWORD_STORE_KEY>.
 
 =back
 
