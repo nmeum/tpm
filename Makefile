@@ -13,11 +13,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-# Current tpm release version.
 VERSION = 1.2
-
-PREFIX    ?= /usr/local
-MANPREFIX ?= $(PREFIX)/share/man
+PREFIX  = /usr/local
 
 all: tpm.1
 tpm.1: README.pod
@@ -26,11 +23,11 @@ tpm.1: README.pod
 
 install: tpm.1
 	install -Dm755 tpm "$(DESTDIR)$(PREFIX)/bin/tpm"
-	install -Dm644 tpm.1 "$(DESTDIR)$(MANPREFIX)/man1/tpm.1"
+	install -Dm644 tpm.1 "$(DESTDIR)/share/man/man1/tpm.1"
 
 uninstall:
 	$(RM) "$(DESTDIR)$(PREFIX)/bin/tpm" \
-		"$(DESTDIR)$(MANPREFIX)/man1/tpm.1"
+		"$(DESTDIR)/share/man/man1/tpm.1"
 
 clean:
 	$(RM) tpm.1
