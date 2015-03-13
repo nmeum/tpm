@@ -23,11 +23,11 @@ display the password for the given entry.
 
 =over 4
 
-=item PASSWORD_STORE_DIR
+=item B<PASSWORD_STORE_DIR>
 
 The storage directory (default: ~/.password-store).
 
-=item PASSWORD_STORE_KEY
+=item B<PASSWORD_STORE_KEY>
 
 GPG key to encrypt files with (default: self).
 
@@ -37,11 +37,11 @@ GPG key to encrypt files with (default: self).
 
 =over 4
 
-=item $PASSWORD_STORE_DIR
+=item I<~/.password-store>
 
-The storage directory.
+The default storage directory.
 
-=item $PASSWORD_STORE_DIR/.gpg-id
+=item I<~/.password-store/.gpg-id>
 
 Provided for compatibility with pass(1). Overwrites $TPM_STORE_KEY.
 
