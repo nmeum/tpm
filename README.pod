@@ -9,9 +9,9 @@ B<tpm> I<COMMAND> I<ENTRY>
 =head1 DESCRIPTION
 
 tpm is a tiny shell script which is heavily inspired and largely
-compatible by pass(1). Just like pass it uses gpg2(1) to securely store
-your passwords, the major difference between pass and tpm is that the
-latter is a lot more minimal.
+compatible with pass(1). Just like pass it uses gpg2(1) to securely
+store your passwords, the major difference between pass and tpm is that
+the latter is a lot more minimal.
 
 Invoking tpm consists of specifying a command either I<insert> or
 I<show> and supplying one entry as a target. If I<insert> is specified
