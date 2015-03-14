@@ -23,11 +23,11 @@ tpm.1: README.pod
 
 install: tpm.1
 	install -Dm755 tpm "$(DESTDIR)$(PREFIX)/bin/tpm"
-	install -Dm644 tpm.1 "$(DESTDIR)/share/man/man1/tpm.1"
+	install -Dm644 tpm.1 "$(DESTDIR)$(PREFIX)/share/man/man1/tpm.1"
 
 uninstall:
 	$(RM) "$(DESTDIR)$(PREFIX)/bin/tpm" \
-		"$(DESTDIR)/share/man/man1/tpm.1"
+		"$(DESTDIR)$(PREFIX)/share/man/man1/tpm.1"
 
 clean:
 	$(RM) tpm.1
