@@ -61,7 +61,7 @@ show() {
     abort "USAGE: tpm show ENTRY"
   fi
 
-  if [ ! -f "${entry_path}" ]; then
+  if [ ! -e "${entry_path}" ]; then
     abort "The requested entry doesn't exist."
   fi
 
