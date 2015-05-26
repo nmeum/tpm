@@ -43,10 +43,13 @@ abort() {
 }
 
 readpw() {
-  printf "${1}"
-  stty -echo
+  if [ -t 0 ]; then
+    printf "${1}"
+    stty -echo
+  fi
+
   IFS= read -r "${2}"
-  stty echo
+  [ -t 0 ] && stty echo
 }
 
 ##
