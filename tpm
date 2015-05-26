@@ -79,8 +79,8 @@ insert() {
     abort "USAGE: tpm insert ENTRY"
   fi
 
-  if [ -e "${entry_path}" ] && [ -t 0 ]; then
-    echo "This entry already exists it will be overwritten."
+  if [ -e "${entry_path}" ]; then
+    abort "This entry already exists, please remove it first."
   fi
 
   readpw "Password for '${entry_name}': " password
