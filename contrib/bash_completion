@@ -17,15 +17,15 @@ _tpm() {
   local cur="${COMP_WORDS[COMP_CWORD]}"
   local cmd="${COMP_WORDS[1]}"
 
-  case "${cmd}"
-    "insert")
+  case "${cmd}" in
+    "insert"|"update")
       _tpm_complete_entries
       ;;
-    "show")
+    "show"|"remove"|"clipboard")
       _tpm_complete_entries -type f
       ;;
     *)
-      COMPREPLY=($(compgen -W "insert show" -- ${cur}))
+      COMPREPLY=($(compgen -W "insert show update remove new clipboard" -- ${cur}))
       ;;
   esac
 }
