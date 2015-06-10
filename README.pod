@@ -19,6 +19,10 @@ as a command tpm will create a new entry and prompt for the
 corresponding password. If you specify I<show> as a command tpm will
 display the password for the given entry.
 
+The convenience methods I<new> and I<clipboard> will create and register
+a new password or copy an entry to the X11 clipboard, respectively and
+I<remove> and I<update> can be used to delete or update existing entries.
+
 =head1 ENVIRONMENT
 
 =over 4

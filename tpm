@@ -94,14 +94,54 @@ insert() {
   echo "${password}" | gpg2 ${GPG_OPTS} --encrypt --output "${entry_path}"
 }
 
+remove() {
+  entry_name="${1}"
+  entry_path="${STORE_DIR}/${entry_name}.gpg"
+
+  if [ -z "${entry_name}" ]; then
+    abort "USAGE: tpm insert ENTRY"
+  fi
+
+  rm -f "${entry_path}"
+}
+
+update() {
+  if [ -z "${1}" ]; then
+    abort "USAGE: tpm update ENTRY"
+  fi
+  remove "$@" && insert "$@"
+}
+
+clipboard() {
+  if [ -z "${1}" ]; then
+    abort "USAGE: tpm clipboard ENTRY"
+  fi
+
+  show "$@" | tr -d '\n' | xclip -selection c
+  echo 'Copied to clipboard.'
+}
+
+newpw() {
+  if [ -z "${1}" ]; then
+    abort "USAGE: tpm new ENTRY"
+  fi
+
+  pwgen -s -1 16 | insert "$@"
+  clipboard "$@"
+}
+
 ##
 # Parse input
 ##
 
 case "${1}" in
-  "show")   show   "${2}" ;;
-  "insert") insert "${2}" ;;
-  *) abort "USAGE: tpm COMMAND ENTRY" ;;
+  "show")       show "${2}" ;;
+  "insert")   insert "${2}" ;;
+  "remove")   remove "${2}" ;;
+  "update")   update "${2}" ;;
+  "new")       newpw "${2}" ;;
+  "clip"*) clipboard "${2}" ;;
+  *) abort "USAGE: tpm [show|insert|update|new|clipboard] ENTRY" ;;
 esac
 
 # vim: et:sw=2:sts=2
