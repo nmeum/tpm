@@ -17,7 +17,7 @@ _tpm() {
   local cur="${COMP_WORDS[COMP_CWORD]}"
   local cmd="${COMP_WORDS[1]}"
 
-  case "${cmd}"
+  case "${cmd}" in
     "insert")
       _tpm_complete_entries
       ;;
