@@ -44,7 +44,7 @@ abort() {
 
 readpw() {
   if [ -t 0 ]; then
-    printf "${1}"
+    printf "%s" "${1}"
     stty -echo
   fi
 
