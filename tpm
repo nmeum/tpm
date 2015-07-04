@@ -91,7 +91,8 @@ insert() {
   fi
 
   mkdir -p "$(dirname "${entry_path}")"
-  echo "${password}" | gpg2 ${GPG_OPTS} --encrypt --output "${entry_path}"
+  printf '%s\n' "${password}" | gpg2 \
+    ${GPG_OPTS} --encrypt --output "${entry_path}"
 }
 
 ##
