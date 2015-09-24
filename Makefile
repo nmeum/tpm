@@ -15,6 +15,8 @@
 
 VERSION = 1.2
 PREFIX  = /usr/local
+BINDIR  = $(PREFIX)/bin
+MANDIR  = $(PREFIX)/share/man
 
 all: tpm.1
 tpm.1: README.pod
@@ -22,12 +24,12 @@ tpm.1: README.pod
 		--release="tpm $(VERSION)" $< $@
 
 install: tpm.1
-	install -Dm755 tpm "$(DESTDIR)$(PREFIX)/bin/tpm"
-	install -Dm644 tpm.1 "$(DESTDIR)$(PREFIX)/share/man/man1/tpm.1"
+	install -Dm755 tpm "$(DESTDIR)$(BINDIR)/tpm"
+	install -Dm644 tpm.1 "$(DESTDIR)$(MANDIR)/man1/tpm.1"
 
 uninstall:
-	$(RM) "$(DESTDIR)$(PREFIX)/bin/tpm" \
-		"$(DESTDIR)$(PREFIX)/share/man/man1/tpm.1"
+	$(RM) "$(DESTDIR)$(BINDIR)/tpm" \
+		"$(DESTDIR)$(MANDIR)/man1/tpm.1"
 
 clean:
 	$(RM) tpm.1
