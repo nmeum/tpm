@@ -23,7 +23,7 @@ umask 077
 GPG_OPTS="--quiet --yes --batch"
 STORE_DIR="${PASSWORD_STORE_DIR:-${HOME}/.password-store}"
 
-if [ -r "${STORE_DIR}/.gpg-id" -a -z "${PASSWORD_STORE_KEY}" ]; then
+if [ -r "${STORE_DIR}/.gpg-id" ] && [ -z "${PASSWORD_STORE_KEY}" ]; then
   read -r PASSWORD_STORE_KEY < "${STORE_DIR}/.gpg-id"
 fi
 
@@ -83,8 +83,12 @@ insert() {
     abort "This entry already exists, please remove it first."
   fi
 
+  password=""
   readpw "Password for '${entry_name}': " password
-  [ -t 0 ] && printf "\n"
+
+  if [ -t 0 ]; then
+    printf "\n"
+  fi
 
   if [ -z "${password}" ]; then
     abort "You didn't specify a password."
