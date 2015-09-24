@@ -18,7 +18,7 @@ Invoking tpm consists of specifying a command either I<insert> or
 I<show> and supplying one entry as a target. If I<insert> is specified
 as a command tpm will create a new entry and prompt for the
 corresponding password. If you specify I<show> as a command tpm will
-display the password for the given entry.
+write the password for the given entry to standard output.
 
 =head1 ENVIRONMENT
 
@@ -58,7 +58,7 @@ Create a new entry called 'system/root':
 
 	$ tpm insert system/root
 
-Display your 'system/root' password:
+Write your 'system/root' password to stdout:
 
 	$ tpm show system/root
 
