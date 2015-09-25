@@ -86,7 +86,6 @@ insert() {
 
   password=""
   readpw "Password for '${entry_name}': " password
-
   if [ -t 0 ]; then
     printf "\n"
   fi
