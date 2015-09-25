@@ -58,7 +58,7 @@ Create a new entry called 'system/root':
 
 	$ tpm insert system/root
 
-Write your 'system/root' password to stdout:
+Write your 'system/root' password to standard output:
 
 	$ tpm show system/root
 
