@@ -103,9 +103,16 @@ insert() {
 # Parse input
 ##
 
-case "${1}" in
-  "show")   show   "${2}" ;;
-  "insert") insert "${2}" ;;
+if [ $# -gt 2 ]; then
+  abort "tpm doesn't accept more than two arguments"
+fi
+
+cmd="${1}"
+shift
+
+case "${cmd}" in
+  "show")   show   "${@}" ;;
+  "insert") insert "${@}" ;;
   *) abort "USAGE: tpm COMMAND ENTRY" ;;
 esac
 
