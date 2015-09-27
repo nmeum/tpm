@@ -29,7 +29,7 @@ if [ -r "${STORE_DIR}/.gpg-id" ] && [ -z "${PASSWORD_STORE_KEY}" ]; then
 fi
 
 if [ -n "${PASSWORD_STORE_KEY}" ]; then
-  GPG_OPTS="${GPG_OPTS} --recipient '${PASSWORD_STORE_KEY}'"
+  GPG_OPTS="${GPG_OPTS} --recipient ${PASSWORD_STORE_KEY}"
 else
   GPG_OPTS="${GPG_OPTS} --default-recipient-self"
 fi
