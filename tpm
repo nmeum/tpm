@@ -27,11 +27,6 @@ if [ -r "${STORE_DIR}/.gpg-id" ] && [ -z "${PASSWORD_STORE_KEY}" ]; then
   read -r PASSWORD_STORE_KEY < "${STORE_DIR}/.gpg-id"
 fi
 
-if [ -n "${PASSWORD_STORE_KEY}" ]; then
-  GPG_OPTS="${GPG_OPTS} --recipient ${PASSWORD_STORE_KEY}"
-else
-  GPG_OPTS="${GPG_OPTS} --default-recipient-self"
-fi
 
 ##
 # Helper
@@ -68,7 +63,11 @@ show() {
     abort "The requested entry doesn't exist."
   fi
 
-  gpg2 ${GPG_OPTS} --decrypt "${entry_path}"
+  if [ -n "${PASSWORD_STORE_KEY}" ]; then
+    gpg2 ${GPG_OPTS} --recipient "${PASSWORD_STORE_KEY}" --decrypt "${entry_path}"
+  else
+    gpg2 ${GPG_OPTS} --default-recipient-self --decrypt "${entry_path}"
+  fi
 }
 
 insert() {
@@ -94,8 +93,16 @@ insert() {
   fi
 
   mkdir -p "$(dirname "${entry_path}")"
-  printf '%s\n' "${password}" | gpg2 ${GPG_OPTS} \
-    --encrypt --output "${entry_path}"
+
+  if [ -n "${PASSWORD_STORE_KEY}" ]; then
+    printf '%s\n' "${password}" | gpg2 ${GPG_OPTS} \
+      --recipient "${PASSWORD_STORE_KEY}" \
+      --encrypt --output "${entry_path}"
+  else
+    printf '%s\n' "${password}" | gpg2 ${GPG_OPTS} \
+      --default-recipient-self \
+      --encrypt --output "${entry_path}"
+  fi
 }
 
 ##
