@@ -1,4 +1,4 @@
-# Copyright (C) 2013-2015 Sören Tempel
+# Copyright (C) 2013-2016 Sören Tempel
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,9 +14,9 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 VERSION = 1.3.1
-PREFIX  = /usr/local
-BINDIR  = $(PREFIX)/bin
-MANDIR  = $(PREFIX)/share/man
+PREFIX ?= /usr/local
+BINDIR ?= $(PREFIX)/bin
+MANDIR ?= $(PREFIX)/share/man
 
 all: tpm.1
 tpm.1: README.pod
