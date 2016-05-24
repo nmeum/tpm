@@ -103,7 +103,7 @@ insert() {
 ##
 
 if [ $# -gt 2 ]; then
-  abort "tpm doesn't accept more than two arguments"
+  abort "tpm doesn't accept more than two arguments."
 fi
 
 case "${1}" in
