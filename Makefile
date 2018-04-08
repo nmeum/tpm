@@ -20,7 +20,7 @@ MANDIR ?= $(PREFIX)/share/man
 
 all: tpm.1
 tpm.1: README.pod
-	pod2man --section=1 --center="tpm Manual" --name="tpm" \
+	pod2man --section=1 --center="tpm Manual" --name="TPM" \
 		--release="tpm $(VERSION)" $< $@
 
 install: tpm.1
