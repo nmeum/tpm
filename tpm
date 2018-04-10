@@ -20,7 +20,6 @@ umask 077
 # Variables
 ##
 
-GPG_OPTS="--quiet --yes --batch"
 STORE_DIR="${PASSWORD_STORE_DIR:-${HOME}/.password-store}"
 
 if [ -r "${STORE_DIR}/.gpg-id" ] && [ -z "${PASSWORD_STORE_KEY}" ]; then
@@ -38,9 +37,9 @@ abort() {
 
 gpg() {
   if [ -n "${PASSWORD_STORE_KEY}" ]; then
-    gpg2 $GPG_OPTS --recipient "${PASSWORD_STORE_KEY}" "$@"
+    gpg2 --quiet --yes --batch --recipient "${PASSWORD_STORE_KEY}" "$@"
   else
-    gpg2 $GPG_OPTS --default-recipient-self "$@"
+    gpg2 --quiet --yes --batch --default-recipient-self "$@"
   fi
 }
 
