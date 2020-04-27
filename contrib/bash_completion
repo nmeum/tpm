@@ -31,7 +31,7 @@ _tpm() {
 }
 
 _tpm_complete_entries() {
-  local dir="${TPM_STORE_DIR:-${HOME}/.password-store}"
+  local dir="${PASSWORD_STORE_DIR:-${HOME}/.password-store}"
 
   if [[ -d "${dir}" ]]; then
     local files="$(find -L "${dir}/" -name ".git" -prune -o $@ -print | sed -e "s|${dir}.||" -e "s|\.gpg||" | sort)"
