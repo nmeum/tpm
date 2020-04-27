@@ -17,7 +17,7 @@
 _tpm() {
   local cmd=${words[2]}
 
-  case "${cmd}"
+  case "${cmd}" in
     "insert")
       _tpm_complete_entries
       ;;
