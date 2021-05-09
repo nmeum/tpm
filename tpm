@@ -81,7 +81,7 @@ insert() {
     abort "USAGE: tpm insert ENTRY"
   fi
 
-  if [ -e "${entry_path}" ]; then
+  if [ -z "${TPM_FORCE}" ] && [ -e "${entry_path}" ]; then
     abort "This entry already exists, please remove it first."
   fi
 
